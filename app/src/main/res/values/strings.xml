@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">App Paciente</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="activity_login_cpf_hint">CPF</string>
+    <string name="activity_login_password_hint">Password</string>
+    <string name="activity_login_button">Login</string>
+    <string name="global_invalid_field">Campo Inválido</string>
 </resources>
