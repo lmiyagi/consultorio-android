@@ -23,10 +23,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     public static final String BASE_URL = "http://10.0.0.18:3000/";
+    public static final int UNPROCESSABLE_ENTITY = 422;
 
     private static ApiService apiService;
 
-    public static void setup(Context context) {
+    public static void setup() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
@@ -57,5 +58,11 @@ public class ApiClient {
             e.printStackTrace();
         }
         return error;
+    }
+
+    public static Call<User> changePassword(String oldPassword, String newPassword, String cpf, String token, Callback<User> callback) {
+        Call<User> call = apiService.changePassword(oldPassword, newPassword, cpf, token);
+        call.enqueue(callback);
+        return call;
     }
 }

@@ -20,6 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".changepassword.ChangePasswordActivity"
+            android:label="@string/activity_change_password_label" />
     </application>
 
 </manifest>

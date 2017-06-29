@@ -1,4 +1,4 @@
-package br.com.leonardomiyagi.apppaciente.login;
+package br.com.leonardomiyagi.apppaciente.changepassword;
 
 import br.com.leonardomiyagi.apppaciente.api.ApiClient;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
@@ -10,31 +10,30 @@ import retrofit2.Response;
  * Created by lmiyagi on 6/28/17.
  */
 
-public class LoginPresenter implements LoginContract.Presenter {
+public class ChangePasswordPresenter implements ChangePasswordContract.Presenter {
 
-    private final LoginContract.View view;
+    private final ChangePasswordContract.View view;
 
-    public LoginPresenter(LoginContract.View view) {
+    public ChangePasswordPresenter(ChangePasswordContract.View view) {
         this.view = view;
     }
 
     @Override
-    public void onLoginClicked() {
-        view.checkLoginFields();
+    public void onConfirmClicked() {
+        view.checkPasswordFields();
     }
 
     @Override
-    public void login(String cpf, String password) {
-        ApiClient.login(cpf, password, new Callback<User>() {
+    public void changePassword(String oldPassword, String newPassword, String cpf, String token) {
+        ApiClient.changePassword(oldPassword, newPassword, cpf, token, new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
-                    view.setCurrentUser(response.body());
-                    view.login();
+                    view.goToMain();
                 } else {
                     String error = ApiClient.getError(response.errorBody());
                     if (error.isEmpty()) {
-                        error = "Falha no login.";
+                        error = "Falha ao tentar modificar a senha.";
                     }
                     view.showError(error);
                 }
@@ -42,7 +41,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                view.showError(t.getMessage());
+
             }
         });
     }

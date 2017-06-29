@@ -1,6 +1,11 @@
 package br.com.leonardomiyagi.apppaciente.api.model;
 
+import android.content.Context;
+import android.text.TextUtils;
+
 import com.google.gson.annotations.SerializedName;
+
+import br.com.leonardomiyagi.apppaciente.util.PreferenceUtils;
 
 /**
  * Created by lmiyagi on 6/28/17.
@@ -12,6 +17,8 @@ public class User {
     public static final String PREFERENCES_USER_CPF = "PREFERENCES_USER_CPF";
     public static final String PREFERENCES_USER_CNS = "PREFERENCES_USER_CNS";
     public static final String PREFERENCES_USER_TOKEN = "PREFERENCES_USER_TOKEN";
+    public static final String PREFERENCES_USER_DEFAULT_PASSWORD = "PREFERENCES_USER_DEFAULT_PASSWORD";
+    public static final String LOGGED_IN = "LOGGED_IN";
 
     @SerializedName("email")
     private String email;
@@ -72,5 +79,13 @@ public class User {
 
     public void setDefaultPassword(boolean defaultPassword) {
         this.defaultPassword = defaultPassword;
+    }
+
+    public static void setCurrentUser(Context context, User user) {
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_EMAIL, user.getEmail());
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CPF, user.getCpf());
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CNS, user.getCns());
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_DEFAULT_PASSWORD, user.isDefaultPassword());
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_TOKEN, user.getToken());
     }
 }

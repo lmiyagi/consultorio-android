@@ -16,7 +16,7 @@ public abstract class LoginContract {
 
         void setCurrentUser(User user);
 
-        void goToMain();
+        void login();
     }
 
     public interface Presenter {

@@ -13,6 +13,6 @@ public class PacienteApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        ApiClient.setup(this);
+        ApiClient.setup();
     }
 }

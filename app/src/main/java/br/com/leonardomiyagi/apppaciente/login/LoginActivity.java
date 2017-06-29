@@ -10,6 +10,7 @@ import android.widget.Toast;
 import br.com.leonardomiyagi.apppaciente.MainActivity;
 import br.com.leonardomiyagi.apppaciente.R;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
+import br.com.leonardomiyagi.apppaciente.changepassword.ChangePasswordActivity;
 import br.com.leonardomiyagi.apppaciente.databinding.ActivityLoginBinding;
 import br.com.leonardomiyagi.apppaciente.util.PreferenceUtils;
 
@@ -21,7 +22,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (PreferenceUtils.getBoolean(this, User.LOGGED_IN, false)) {
+            login();
+        }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.activity_login_label);
+        }
         presenter = new LoginPresenter(this);
         binding.setPresenter(presenter);
     }
@@ -41,15 +48,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setCurrentUser(User user) {
-        PreferenceUtils.setPreference(this, User.PREFERENCES_USER_EMAIL, user.getCpf());
-        PreferenceUtils.setPreference(this, User.PREFERENCES_USER_CPF, user.getCpf());
-        PreferenceUtils.setPreference(this, User.PREFERENCES_USER_CNS, user.getCpf());
-        PreferenceUtils.setPreference(this, User.PREFERENCES_USER_TOKEN, user.getToken());
+        User.setCurrentUser(this, user);
     }
 
     @Override
-    public void goToMain() {
-        startActivity(new Intent(this, MainActivity.class));
+    public void login() {
+        PreferenceUtils.setPreference(this, User.LOGGED_IN, true);
+        if (PreferenceUtils.getBoolean(this, User.PREFERENCES_USER_DEFAULT_PASSWORD, false)) {
+            startActivity(new Intent(this, ChangePasswordActivity.class));
+        } else {
+            startActivity(new Intent(this, MainActivity.class));
+        }
         finish();
     }
 

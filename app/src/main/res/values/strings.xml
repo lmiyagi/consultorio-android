@@ -2,7 +2,13 @@
     <string name="app_name">App Paciente</string>
     <string name="title_activity_login">Sign in</string>
     <string name="activity_login_cpf_hint">CPF</string>
-    <string name="activity_login_password_hint">Password</string>
+    <string name="activity_login_password_hint">Senha</string>
     <string name="activity_login_button">Login</string>
     <string name="global_invalid_field">Campo Inválido</string>
+    <string name="activity_change_password_old_hint">Senha Antiga</string>
+    <string name="activity_change_password_new_hint">Senha Nova</string>
+    <string name="activity_change_password_label">Trocar Senha</string>
+    <string name="activity_login_label">Login</string>
+    <string name="activity_change_password_confirm">Confirmar</string>
+    <string name="activity_change_password_default_password_hint">Cadastre a sua nova senha</string>
 </resources>
