@@ -33,6 +33,8 @@ class MainPresenter implements MainContract.Presenter {
                         view.showEmptyList(response.body().isEmpty());
                         view.setAppointments(response.body());
                     }
+                } else if (response.code() == ApiClient.UNAUTHORIZED) {
+                    view.logout();
                 } else {
                     String error = ApiClient.getError(response.errorBody());
                     if (error.isEmpty()) {

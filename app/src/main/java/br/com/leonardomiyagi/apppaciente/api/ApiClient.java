@@ -28,6 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     public static final String BASE_URL = "http://10.0.0.18:3000/";
+    public static final int UNAUTHORIZED = 401;
+    public static final int NOT_FOUND = 404;
     public static final int UNPROCESSABLE_ENTITY = 422;
 
     private static ApiService apiService;

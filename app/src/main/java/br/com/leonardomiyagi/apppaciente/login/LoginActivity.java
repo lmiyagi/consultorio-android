@@ -2,16 +2,16 @@ package br.com.leonardomiyagi.apppaciente.login;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import br.com.leonardomiyagi.apppaciente.main.MainActivity;
 import br.com.leonardomiyagi.apppaciente.R;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
 import br.com.leonardomiyagi.apppaciente.changepassword.ChangePasswordActivity;
 import br.com.leonardomiyagi.apppaciente.databinding.ActivityLoginBinding;
+import br.com.leonardomiyagi.apppaciente.main.MainActivity;
 import br.com.leonardomiyagi.apppaciente.util.PreferenceUtils;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
@@ -22,7 +22,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (PreferenceUtils.getBoolean(this, User.LOGGED_IN, false)) {
+        if (PreferenceUtils.getBoolean(this, User.LOGGED_IN, false) && !PreferenceUtils.getBoolean(this, User.PREFERENCES_USER_DEFAULT_PASSWORD, true)) {
+            User.logoutCurrentUser(this);
             login();
         }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);

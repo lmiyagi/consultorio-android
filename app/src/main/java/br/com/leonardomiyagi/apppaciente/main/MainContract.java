@@ -23,6 +23,8 @@ public abstract class MainContract {
         void showLoading(boolean show);
 
         void showSuccessfulCancellationMessage();
+
+        void logout();
     }
 
     public interface Presenter {

@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                         PreferenceUtils.getString(this, User.PREFERENCES_USER_TOKEN));
                 return true;
             case R.id.logout:
-                User.logoutCurrentUser(this);
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
+                logout();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -113,6 +111,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void showSuccessfulCancellationMessage() {
         Toast.makeText(this, "Solicitação de cancelamento enviada. Aguarde a resposta.", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void logout() {
+        User.logoutCurrentUser(this);
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
     }
 
     @Override
