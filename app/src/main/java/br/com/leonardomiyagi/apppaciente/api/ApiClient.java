@@ -1,14 +1,17 @@
 package br.com.leonardomiyagi.apppaciente.api;
 
-import android.content.Context;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 
+import br.com.leonardomiyagi.apppaciente.api.model.Appointment;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
+import br.com.leonardomiyagi.apppaciente.util.DateFormatter;
 import okhttp3.OkHttpClient;
+import okhttp3.Response;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -62,6 +65,24 @@ public class ApiClient {
 
     public static Call<User> changePassword(String oldPassword, String newPassword, String cpf, String token, Callback<User> callback) {
         Call<User> call = apiService.changePassword(oldPassword, newPassword, cpf, token);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public static Call<Appointment> createAppointment(String cpf, String token, Date date, Callback<Appointment> callback) {
+        Call<Appointment> call = apiService.createAppointment(cpf, token, DateFormatter.formatToApiDate(date));
+        call.enqueue(callback);
+        return call;
+    }
+
+    public static Call<Response> cancelAppointment(String cpf, String token, int appointmentId, Callback<Response> callback) {
+        Call<Response> call = apiService.cancelAppointment(cpf, token, appointmentId);
+        call.enqueue(callback);
+        return call;
+    }
+
+    public static Call<ArrayList<Appointment>> getAppointments(String cpf, String token, Callback<ArrayList<Appointment>> callback) {
+        Call<ArrayList<Appointment>> call = apiService.getAppointments(cpf, token);
         call.enqueue(callback);
         return call;
     }
