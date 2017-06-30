@@ -1,7 +1,6 @@
 package br.com.leonardomiyagi.apppaciente.api.model;
 
 import android.content.Context;
-import android.text.TextUtils;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,6 +12,7 @@ import br.com.leonardomiyagi.apppaciente.util.PreferenceUtils;
 
 public class User {
 
+    public static final String PREFERENCES_USER_NAME = "PREFERENCES_USER_NAME";
     public static final String PREFERENCES_USER_EMAIL = "PREFERENCES_USER_EMAIL";
     public static final String PREFERENCES_USER_CPF = "PREFERENCES_USER_CPF";
     public static final String PREFERENCES_USER_CNS = "PREFERENCES_USER_CNS";
@@ -20,6 +20,8 @@ public class User {
     public static final String PREFERENCES_USER_DEFAULT_PASSWORD = "PREFERENCES_USER_DEFAULT_PASSWORD";
     public static final String LOGGED_IN = "LOGGED_IN";
 
+    @SerializedName("name")
+    private String name;
     @SerializedName("email")
     private String email;
     @SerializedName("cpf")
@@ -32,6 +34,14 @@ public class User {
     private String token;
     @SerializedName("default_password")
     private boolean defaultPassword;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;
@@ -82,10 +92,20 @@ public class User {
     }
 
     public static void setCurrentUser(Context context, User user) {
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_NAME, user.getName());
         PreferenceUtils.setPreference(context, User.PREFERENCES_USER_EMAIL, user.getEmail());
         PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CPF, user.getCpf());
         PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CNS, user.getCns());
         PreferenceUtils.setPreference(context, User.PREFERENCES_USER_DEFAULT_PASSWORD, user.isDefaultPassword());
         PreferenceUtils.setPreference(context, User.PREFERENCES_USER_TOKEN, user.getToken());
+    }
+
+    public static void logoutCurrentUser(Context context) {
+        PreferenceUtils.setPreference(context, User.LOGGED_IN, false);
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_EMAIL, "");
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CPF, "");
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_CNS, "");
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_DEFAULT_PASSWORD, false);
+        PreferenceUtils.setPreference(context, User.PREFERENCES_USER_TOKEN, "");
     }
 }

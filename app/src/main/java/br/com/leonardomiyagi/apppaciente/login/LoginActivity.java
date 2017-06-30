@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import br.com.leonardomiyagi.apppaciente.MainActivity;
+import br.com.leonardomiyagi.apppaciente.main.MainActivity;
 import br.com.leonardomiyagi.apppaciente.R;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
 import br.com.leonardomiyagi.apppaciente.changepassword.ChangePasswordActivity;

@@ -8,10 +8,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import br.com.leonardomiyagi.apppaciente.MainActivity;
 import br.com.leonardomiyagi.apppaciente.R;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
 import br.com.leonardomiyagi.apppaciente.databinding.ActivityChangePasswordBinding;
+import br.com.leonardomiyagi.apppaciente.main.MainActivity;
 import br.com.leonardomiyagi.apppaciente.util.PreferenceUtils;
 
 public class ChangePasswordActivity extends AppCompatActivity implements ChangePasswordContract.View {
@@ -56,6 +56,11 @@ public class ChangePasswordActivity extends AppCompatActivity implements ChangeP
     @Override
     public void showError(String error) {
         Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateUser() {
+        PreferenceUtils.setPreference(this, User.PREFERENCES_USER_DEFAULT_PASSWORD, false);
     }
 
     private boolean validateFields() {
