@@ -15,6 +15,8 @@ public abstract class ChangePasswordContract {
         void checkPasswordFields();
 
         void showError(String error);
+
+        void updateUser();
     }
 
     public interface Presenter {

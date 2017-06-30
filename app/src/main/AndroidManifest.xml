@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".main.MainActivity"
+            android:label="@string/activity_main_label" />
         <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +25,8 @@
         <activity
             android:name=".changepassword.ChangePasswordActivity"
             android:label="@string/activity_change_password_label" />
+        <activity
+            android:name=".appointment.CreateAppointmentActivity" />
     </application>
 
 </manifest>

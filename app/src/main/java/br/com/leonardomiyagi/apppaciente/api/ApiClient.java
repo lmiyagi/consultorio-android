@@ -1,5 +1,7 @@
 package br.com.leonardomiyagi.apppaciente.api;
 
+import com.google.gson.Gson;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,14 +71,14 @@ public class ApiClient {
         return call;
     }
 
-    public static Call<Appointment> createAppointment(String cpf, String token, Date date, Callback<Appointment> callback) {
-        Call<Appointment> call = apiService.createAppointment(cpf, token, DateFormatter.formatToApiDate(date));
+    public static Call<Appointment> scheduleAppointment(String cpf, String token, Date date, Callback<Appointment> callback) {
+        Call<Appointment> call = apiService.scheduleAppointment(cpf, token, DateFormatter.formatToApiDate(date));
         call.enqueue(callback);
         return call;
     }
 
-    public static Call<Response> cancelAppointment(String cpf, String token, int appointmentId, Callback<Response> callback) {
-        Call<Response> call = apiService.cancelAppointment(cpf, token, appointmentId);
+    public static Call<ResponseBody> cancelAppointment(String cpf, String token, int appointmentId, Callback<ResponseBody> callback) {
+        Call<ResponseBody> call = apiService.cancelAppointment(cpf, token, appointmentId);
         call.enqueue(callback);
         return call;
     }

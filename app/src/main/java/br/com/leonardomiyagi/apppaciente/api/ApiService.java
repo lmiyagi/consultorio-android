@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import br.com.leonardomiyagi.apppaciente.api.model.Appointment;
 import br.com.leonardomiyagi.apppaciente.api.model.User;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -33,9 +34,9 @@ public interface ApiService {
 
     @POST("api/v1/users/me/appointments")
     @FormUrlEncoded
-    Call<Appointment> createAppointment(@Field("cpf") String cpf, @Field("token") String token, @Field("date") String date);
+    Call<Appointment> scheduleAppointment(@Field("cpf") String cpf, @Field("token") String token, @Field("date") String date);
 
     @POST("api/v1/users/me/appointments/{appointment_id}/cancel")
     @FormUrlEncoded
-    Call<Response> cancelAppointment(@Field("cpf") String cpf, @Field("token") String token, @Path("appointment_id") int appointmentId);
+    Call<ResponseBody> cancelAppointment(@Field("cpf") String cpf, @Field("token") String token, @Path("appointment_id") int appointmentId);
 }

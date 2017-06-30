@@ -11,4 +11,15 @@
     <string name="activity_login_label">Login</string>
     <string name="activity_change_password_confirm">Confirmar</string>
     <string name="activity_change_password_default_password_hint">Cadastre a sua nova senha</string>
+    <string name="activity_main_schedule_appointment">Agendar Consulta</string>
+    <string name="appointment_item_situation" formatted="false">Situação: %s</string>
+    <string name="appointment_item_date" formatted="false">Data: %s - Horário: %s</string>
+    <string name="activity_appointments_empty_message">Não há consultas.</string>
+    <string name="activity_create_appointment_date_format" formatted="false">%02d/%02d/%d</string>
+    <string name="activity_create_appointment_time_format" formatted="false">%02d:%02d</string>
+    <string name="activity_create_appointment_date">Data</string>
+    <string name="activity_create_appointment_time">Horário</string>
+    <string name="activity_create_appointment_succesful">Consulta agendada com sucesso. Aguarde a confirmação.</string>
+    <string name="activity_create_appointment_label">Agendar Consulta</string>
+    <string name="activity_main_label">Consultas</string>
 </resources>

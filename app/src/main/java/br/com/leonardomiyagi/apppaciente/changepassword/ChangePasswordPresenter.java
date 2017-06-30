@@ -29,6 +29,7 @@ public class ChangePasswordPresenter implements ChangePasswordContract.Presenter
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
+                    view.updateUser();
                     view.goToMain();
                 } else {
                     String error = ApiClient.getError(response.errorBody());
