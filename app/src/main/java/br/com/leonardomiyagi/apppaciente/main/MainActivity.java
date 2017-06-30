@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void setAppointments(ArrayList<Appointment> appointments) {
         this.appointments.clear();
+        adapter.notifyDataSetChanged();
         this.appointments.addAll(appointments);
         adapter.notifyDataSetChanged();
     }
